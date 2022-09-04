@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "156967103175",
+    "project_id": "crypto-currency-app-auth-64884",
+    "storage_bucket": "crypto-currency-app-auth-64884.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:156967103175:android:ed000fec1c4be678f4ece2",
+        "android_client_info": {
+          "package_name": "com.ua.epam.ctiptocurrencytracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "156967103175-1inhr9e85dvdr2cv64i42cp17jk4vhj2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDD3OMuNtHXpVwlDVRJZ5lDESyXpa-r9W4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "156967103175-1inhr9e85dvdr2cv64i42cp17jk4vhj2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

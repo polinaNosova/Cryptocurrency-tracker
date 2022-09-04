@@ -1,0 +1,203 @@
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Quote.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Quote.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Quote.kt
+new file mode 100644
+--- /dev/null	(date 1662287350205)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Quote.kt	(date 1662287350205)
+@@ -0,0 +1,33 @@
++package com.ua.epam.data.remote.dto
++
++import com.ua.epam.domain.model.QuotyEntity
++
++data class Quote(
++    val dominance: Double,
++    val fullyDilluttedMarketCap: Double,
++    val lastUpdated: String,
++    val marketCap: Double,
++    val marketCapByTotalSupply: Double,
++    val name: String,
++    val percentChange1h: Double,
++    val percentChange24h: Double,
++    val percentChange30d: Double,
++    val percentChange60d: Double,
++    val percentChange7d: Double,
++    val percentChange90d: Double,
++    val price: Double,
++    val turnover: Double,
++    val tvl: Double,
++    val volume24h: Double,
++    val ytdPriceChangePercentage: Double
++) {
++    fun toQuetyEntity(): QuotyEntity {
++        return QuotyEntity(
++            price,
++            percentChange1h,
++            percentChange24h,
++            percentChange60d,
++            percentChange7d
++        )
++    }
++}
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Status.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Status.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Status.kt
+new file mode 100644
+--- /dev/null	(date 1662287350288)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Status.kt	(date 1662287350288)
+@@ -0,0 +1,9 @@
++package com.ua.epam.data.remote.dto
++
++data class Status(
++    val credit_count: Int,
++    val elapsed: String,
++    val error_code: String,
++    val error_message: String,
++    val timestamp: String
++)
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/MarketModelResponse.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/MarketModelResponse.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/MarketModelResponse.kt
+new file mode 100644
+--- /dev/null	(date 1662287350280)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/MarketModelResponse.kt	(date 1662287350280)
+@@ -0,0 +1,18 @@
++package com.ua.epam.data.remote.dto
++
++import com.google.gson.annotations.SerializedName
++
++data class MarketModelResponse(
++    val id: String,
++    val symbol: String,
++    val image: String,
++    val name: String,
++    @SerializedName("current_price")
++    val currentPrice: Double,
++    @SerializedName("low_24h")
++    val lowTwentyFourHour: Double,
++    @SerializedName("high_24h")
++    val highTwentyFourHour: Double,
++    @SerializedName("price_change_24h")
++    val priceChangeResult:Double
++)
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/CryptoCurrency.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/CryptoCurrency.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/CryptoCurrency.kt
+new file mode 100644
+--- /dev/null	(date 1662287350246)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/CryptoCurrency.kt	(date 1662287350246)
+@@ -0,0 +1,22 @@
++package com.ua.epam.data.remote.dto
++
++data class CryptoCurrency(
++    val auditInfoList: List<AuditInfo>,
++    val circulatingSupply: Double,
++    val cmcRank: Double,
++    val dateAdded: String,
++    val id: Int,
++    val isActive: Int,
++    val isAudited: Boolean,
++    val lastUpdated: String,
++    val marketPairCount: Double,
++    val maxSupply: Double,
++    val name: String,
++    val platform: Platform,
++    val quotes: List<Quote>,
++    val selfReportedCirculatingSupply: Double,
++    val slug: String,
++    val symbol: String,
++    val tags: List<String>,
++    val totalSupply: Double
++)
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/AuditInfo.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/AuditInfo.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/AuditInfo.kt
+new file mode 100644
+--- /dev/null	(date 1662287350083)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/AuditInfo.kt	(date 1662287350083)
+@@ -0,0 +1,12 @@
++package com.ua.epam.data.remote.dto
++
++data class AuditInfo(
++    val auditStatus: Int,
++    val auditTime: String,
++    val auditor: String,
++    val coinId: String,
++    val contractAddress: String,
++    val contractPlatform: String,
++    val reportUrl: String,
++    val score: String
++)
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Platform.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Platform.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Platform.kt
+new file mode 100644
+--- /dev/null	(date 1662287350178)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Platform.kt	(date 1662287350178)
+@@ -0,0 +1,9 @@
++package com.ua.epam.data.remote.dto
++
++data class Platform(
++    val id: Int,
++    val name: String,
++    val slug: String,
++    val symbol: String,
++    val token_address: String
++)
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/HomeModelResponse.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/HomeModelResponse.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/HomeModelResponse.kt
+new file mode 100644
+--- /dev/null	(date 1662287350150)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/HomeModelResponse.kt	(date 1662287350150)
+@@ -0,0 +1,6 @@
++package com.ua.epam.data.remote.dto
++
++data class HomeModelResponse(
++    val `data`: Data,
++    val status: Status
++)
+\ No newline at end of file
+Index: CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Data.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Data.kt b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Data.kt
+new file mode 100644
+--- /dev/null	(date 1662287350164)
++++ b/CtiptoCurrencyTracker/data/src/main/java/com/ua/epam/data/remote/dto/Data.kt	(date 1662287350164)
+@@ -0,0 +1,6 @@
++package com.ua.epam.data.remote.dto
++
++data class Data(
++    val cryptoCurrencyList: List<CryptoCurrency>,
++    val totalCount: String
++)
+\ No newline at end of file
