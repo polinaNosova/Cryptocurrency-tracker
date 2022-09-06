@@ -9,12 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.ua.epam.ctiptocurrencytracker.R
 import com.ua.epam.ctiptocurrencytracker.adapter.HomeTopCurrencyAdapter
+import com.ua.epam.ctiptocurrencytracker.adapter.TopCoinsAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentHomeBinding
-import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModelFactory
-import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
+import com.ua.epam.ctiptocurrencytracker.viemodel.*
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -22,7 +22,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding get() = _binding!!
 
     private val adapter by lazy { context?.let { HomeTopCurrencyAdapter(it) } }
+    private val topCoinAdapter by lazy { context?.let { TopCoinsAdapter() } }
+
     private val viewModel by viewModels<HomeViewModel> { HomeViewModelFactory() }
+    private val topCoinViewModel by viewModels<TopCoinsViewModel> { TopCoinsViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -32,45 +35,23 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         return binding.root
     }
 
-//    private fun setTabLayout() {
-//        val adapter = LossGainPagerAdapter(this)
-//        binding.contentViewPager.adapter = adapter
-//        binding.contentViewPager.registerOnPageChangeCallback(object :
-//            ViewPager2.OnPageChangeCallback() {
-//            override fun onPageSelected(position: Int) {
-//                super.onPageSelected(position)
-//                if (position == 0) {
-//                    binding.topGainIndicator.visibility = VISIBLE
-//                    binding.topLoseIndicator.visibility = GONE
-//                }else{
-//                    binding.topGainIndicator.visibility = GONE
-//                    binding.topLoseIndicator.visibility = VISIBLE
-//                }
-//            }
-//        })
-//        TabLayoutMediator(binding.tabLayout,binding.contentViewPager){
-//            tab,position ->
-//            var title = if(position == 0){
-//                "Top Gainers"
-//            }else{
-//                "Top Losers"
-//            }
-//            tab.text = title
-//        }.attach()
-//    }
+    private fun setTopCoinsAdapter() {
+        binding.rvTopCoinsList.adapter = this@HomeFragment.topCoinAdapter
+        binding.rvTopCoinsList.layoutManager = LinearLayoutManager(context)
+    }
+    private fun setUpAdapter() {
+        binding.rvTopCurrencyList.adapter = this@HomeFragment.adapter
+    }
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         setUpLiveData()
+        setTopCoinsAdapter()
+        setUpCoinsTopLiveData()
+        topCoinViewModel.getTopCoins()
         viewModel.getCurrencyRates(MarketViewModel.QUERY)
-    }
-
-    private fun setUpAdapter() {
-        binding.apply {
-            rvTopCurrencyList.adapter = this@HomeFragment.adapter
-        }
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
@@ -78,6 +59,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         viewModel.apply {
             mapAction.observe(viewLifecycleOwner) {
                 adapter?.setNewCurrencyModel(it)
+                errorAction.observe(viewLifecycleOwner) {
+                    Toast.makeText(
+                        context,
+                        "An error occurred",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
+    }
+
+    private fun setUpCoinsTopLiveData() {
+        topCoinViewModel.apply {
+            mapAction.observe(viewLifecycleOwner) {
+                topCoinAdapter?.setNewCurrencyModel(it)
                 errorAction.observe(viewLifecycleOwner) {
                     Toast.makeText(
                         context,

@@ -10,7 +10,6 @@ data class CurrencyEntity(
     val highTwentyFourHour: Double,
     val priceChangeResult: Double,
     val sparkline_in_7d: SparklineIn7dEntity,
-
     val market_cap_rank: Int,
     val circulating_supply: Double,
     val ath_date: String,

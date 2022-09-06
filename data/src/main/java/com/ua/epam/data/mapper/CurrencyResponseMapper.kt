@@ -1,8 +1,9 @@
 package com.ua.epam.data.mapper
 
-import com.ua.epam.data.model.CurrencyDataResponse
+import com.ua.epam.data.state.network.model.CurrencyDataResponse
+import com.ua.epam.data.state.network.model.TopCoinResponse
 import com.ua.epam.domain.model.CurrencyEntity
-import com.ua.epam.domain.model.SparklineIn7dEntity
+import com.ua.epam.domain.model.TopCoinEntity
 
 object CurrencyResponseMapper {
     fun toCurrencyEntity(list: List<CurrencyDataResponse>): List<CurrencyEntity> =
@@ -23,4 +24,11 @@ object CurrencyResponseMapper {
                 it.market_cap
             )
         }
-}
+
+    fun toCoinTopEntity(list: List<TopCoinResponse>): List<TopCoinEntity> =
+        list.map {
+            TopCoinEntity(
+                it.item.toItemEntity()
+            )
+        }
+    }

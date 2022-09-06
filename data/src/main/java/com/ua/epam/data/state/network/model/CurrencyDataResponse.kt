@@ -1,4 +1,4 @@
-package com.ua.epam.data.model
+package com.ua.epam.data.state.network.model
 
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
@@ -28,7 +28,6 @@ data class CurrencyDataResponse(
     val priceChange24h: Double,
     @SerializedName("price_change_percentage_24h")
     val priceChangePercentage24h: Double,
-    val roi: Roi,
     @SerializedName("sparkline_in_7d")
     val sparklineIn7d: SparklineIn7d,
     val symbol: String

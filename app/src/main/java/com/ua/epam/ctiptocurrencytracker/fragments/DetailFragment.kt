@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.github.mikephil.charting.animation.Easing
 import com.github.mikephil.charting.data.*
 import com.squareup.picasso.Picasso
 import com.ua.epam.ctiptocurrencytracker.R

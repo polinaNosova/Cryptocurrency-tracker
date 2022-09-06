@@ -1,25 +1,18 @@
 package com.ua.epam.ctiptocurrencytracker.adapter
 
 import android.annotation.SuppressLint
-import android.location.Location
 import android.os.Build
-import android.provider.CallLog
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.github.mikephil.charting.utils.Utils.init
 import com.squareup.picasso.Picasso
-import com.ua.epam.ctiptocurrencytracker.R
 
 import com.ua.epam.ctiptocurrencytracker.databinding.CoinItemBinding
-import com.ua.epam.ctiptocurrencytracker.fragments.MarketFragment
 import com.ua.epam.ctiptocurrencytracker.fragments.MarketFragmentDirections
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
-import com.ua.epam.domain.model.CurrencyEntity
+import com.ua.epam.ctiptocurrencytracker.model.TopCoinUiModel
 
 class MarketAdapter() :
     RecyclerView.Adapter<MarketAdapter.CurrencyViewHolder>() {

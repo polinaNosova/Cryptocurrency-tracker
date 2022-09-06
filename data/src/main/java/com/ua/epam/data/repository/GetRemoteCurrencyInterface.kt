@@ -5,5 +5,8 @@ import io.reactivex.Observable
 import retrofit2.http.Query
 
 interface GetRemoteCurrencyInterface {
-fun getFinCurrencyList(query: String):Observable<List<CurrencyEntity>>
+    fun getFinCurrencyList(query: String): Observable<List<CurrencyEntity>>
+    suspend fun insert(currencyEntity: CurrencyEntity)
+    suspend fun update(list: List<CurrencyEntity>)
+    suspend fun getAllCoins(): List<CurrencyEntity>
 }

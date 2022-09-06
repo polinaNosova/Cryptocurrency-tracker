@@ -1,4 +1,4 @@
-package com.ua.epam.data.model
+package com.ua.epam.data.state.network.model
 
 import com.ua.epam.domain.model.SparklineIn7dEntity
 

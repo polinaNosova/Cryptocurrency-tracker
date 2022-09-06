@@ -1,4 +1,4 @@
-package com.ua.epam.data.network
+package com.ua.epam.data.state.network
 
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -8,7 +8,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitInstance {
     val currencyService: CryptoCurrencyService by lazy { retrofit.create(CryptoCurrencyService::class.java) }
-    const val BASE_URL = "https://api.coingecko.com"
+    private const val BASE_URL = "https://api.coingecko.com"
     private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
         setLevel(HttpLoggingInterceptor.Level.BASIC)
     }
