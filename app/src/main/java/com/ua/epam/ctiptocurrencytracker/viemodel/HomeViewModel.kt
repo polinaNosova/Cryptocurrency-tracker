@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.example.rxjava.utils.SingleLiveEvent
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyUiMapper
-import com.ua.epam.domain.usecase.GetHomeTopCoinsUseCase
+import com.ua.epam.domain.usecase.GetCurrencyDataUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-class HomeViewModel(private val useCase: GetHomeTopCoinsUseCase):ViewModel() {
+class HomeViewModel(private val useCase: GetCurrencyDataUseCase):ViewModel() {
     private val _mapAction = MutableLiveData<List<CurrencyRateUiModel>>()
 
     val mapAction: LiveData<List<CurrencyRateUiModel>> get() = _mapAction

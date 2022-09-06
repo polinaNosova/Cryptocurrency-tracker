@@ -14,10 +14,24 @@
         android:id="@+id/marketFragment3"
         android:name="com.ua.epam.ctiptocurrencytracker.fragments.MarketFragment"
         android:label="fragment_market"
-        tools:layout="@layout/fragment_market" />
+        tools:layout="@layout/fragment_market" >
+        <action
+            android:id="@+id/action_marketFragment3_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/favoriteFragment3"
         android:name="com.ua.epam.ctiptocurrencytracker.fragments.FavoriteFragment"
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/detailsFragment"
+        android:name="com.ua.epam.ctiptocurrencytracker.fragments.DetailFragment"
+        android:label="fragment_details"
+        tools:layout="@layout/fragment_detail" >
+        <argument
+            android:name="data"
+            app:argType="com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel"
+            app:nullable="true" />
+    </fragment>
 </navigation>

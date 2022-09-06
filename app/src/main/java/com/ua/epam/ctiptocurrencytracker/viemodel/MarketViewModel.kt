@@ -7,15 +7,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.rxjava.utils.SingleLiveEvent
-import com.ua.epam.domain.usecase.GetMarketCoinsUseCase
+import com.ua.epam.domain.usecase.GetCurrencyDataUseCase
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyUiMapper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 
-
 @RequiresApi(Build.VERSION_CODES.O)
-class MainViewModel(private val currencyRateExecution: GetMarketCoinsUseCase) : ViewModel() {
+class MarketViewModel(private val currencyRateExecution: GetCurrencyDataUseCase) : ViewModel() {
     private val _mapAction = MutableLiveData<List<CurrencyRateUiModel>>()
 
     val mapAction: LiveData<List<CurrencyRateUiModel>> get() = _mapAction

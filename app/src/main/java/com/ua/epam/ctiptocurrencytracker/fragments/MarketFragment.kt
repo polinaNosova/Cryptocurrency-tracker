@@ -11,18 +11,18 @@ import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ua.epam.ctiptocurrencytracker.R
-import com.ua.epam.ctiptocurrencytracker.adapter.CurrencyRateAdapter
+import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentMarketBinding
-import com.ua.epam.ctiptocurrencytracker.viemodel.MainViewModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.MainViewModelFactory
+import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
+import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModelFactory
 
 class MarketFragment : Fragment(R.layout.fragment_favorite) {
 
     private var _binding: FragmentMarketBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter by lazy { CurrencyRateAdapter() }
-    private val viewModel by viewModels<MainViewModel> { MainViewModelFactory() }
+    private val adapter by lazy { MarketAdapter() }
+    private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory() }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,10 +35,9 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setGreeting()
         setUpAdapter()
         setUpLiveData()
-        viewModel.getCurrencyRates(MainViewModel.QUERY)
+        viewModel.getCurrencyRates(MarketViewModel.QUERY)
     }
 
     override fun onDestroyView() {
@@ -69,10 +68,6 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         }
     }
 
-    private fun setGreeting() {
-        val userName = arguments?.getString(userNameKey)
-        Toast.makeText(context, "Welcome to CryptoWallet, $userName", Toast.LENGTH_SHORT).show()
-    }
 
     companion object {
         const val userNameKey = "USER_NAME"

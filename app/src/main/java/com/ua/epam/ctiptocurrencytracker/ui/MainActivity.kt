@@ -4,6 +4,8 @@ import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.annotation.RequiresApi
+import com.ua.epam.ctiptocurrencytracker.R
+import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 
 import com.ua.epam.ctiptocurrencytracker.databinding.ActivityMainBinding
 
@@ -15,6 +17,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
     }
 }
 

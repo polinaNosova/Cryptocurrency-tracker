@@ -9,16 +9,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.ua.epam.ctiptocurrencytracker.R
-import com.ua.epam.ctiptocurrencytracker.adapter.CurrencyRateAdapter
 import com.ua.epam.ctiptocurrencytracker.adapter.HomeTopCurrencyAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentHomeBinding
-import com.ua.epam.ctiptocurrencytracker.databinding.FragmentMarketBinding
 import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModel
 import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModelFactory
-import com.ua.epam.ctiptocurrencytracker.viemodel.MainViewModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.MainViewModelFactory
+import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
 
 class HomeFragment : Fragment(R.layout.fragment_home) {
 
@@ -36,12 +32,39 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         return binding.root
     }
 
+//    private fun setTabLayout() {
+//        val adapter = LossGainPagerAdapter(this)
+//        binding.contentViewPager.adapter = adapter
+//        binding.contentViewPager.registerOnPageChangeCallback(object :
+//            ViewPager2.OnPageChangeCallback() {
+//            override fun onPageSelected(position: Int) {
+//                super.onPageSelected(position)
+//                if (position == 0) {
+//                    binding.topGainIndicator.visibility = VISIBLE
+//                    binding.topLoseIndicator.visibility = GONE
+//                }else{
+//                    binding.topGainIndicator.visibility = GONE
+//                    binding.topLoseIndicator.visibility = VISIBLE
+//                }
+//            }
+//        })
+//        TabLayoutMediator(binding.tabLayout,binding.contentViewPager){
+//            tab,position ->
+//            var title = if(position == 0){
+//                "Top Gainers"
+//            }else{
+//                "Top Losers"
+//            }
+//            tab.text = title
+//        }.attach()
+//    }
+
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         setUpLiveData()
-        viewModel.getCurrencyRates(MainViewModel.QUERY)
+        viewModel.getCurrencyRates(MarketViewModel.QUERY)
     }
 
     private fun setUpAdapter() {
