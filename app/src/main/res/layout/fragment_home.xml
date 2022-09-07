@@ -22,7 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="182dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/uah" />
+            android:src="@drawable/img_content" />
     </androidx.cardview.widget.CardView>
 
     <androidx.recyclerview.widget.RecyclerView
@@ -46,6 +46,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
+            android:background="@color/purple_1"
             android:id="@+id/rvTopCoinsList"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

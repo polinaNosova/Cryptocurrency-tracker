@@ -15,16 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CryptoCurrencyTracker"
         tools:targetApi="31">
-        <activity
-            android:name=".MainFragment"
-            android:exported="false" />
-        <activity
-            android:name=".ui.ContentActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.BottomNavActivity"
-            android:exported="false"
-            android:label="@string/title_activity_bottom_nav" />
+
         <activity
             android:name=".ui.MainActivity"
             android:exported="true">

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/mainFragment">
+    app:startDestination="@id/authorisationFragment2">
 
     <fragment
         android:id="@+id/registrationFragment"
@@ -16,8 +16,8 @@
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_registrationFragment_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_registrationFragment_to_homeFragment3"
+            app:destination="@id/homeFragment3" />
     </fragment>
     <fragment
         android:id="@+id/authorisationFragment2"
@@ -28,12 +28,27 @@
             android:id="@+id/action_authorisationFragment2_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
-            android:id="@+id/action_authorisationFragment2_to_mainFragment"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_authorisationFragment2_to_homeFragment3"
+            app:destination="@id/homeFragment3" />
     </fragment>
     <fragment
-        android:id="@+id/mainFragment"
-        android:name="com.ua.epam.ctiptocurrencytracker.MainFragment"
-        android:label="fragment_main"
-        tools:layout="@layout/fragment_main" />
+        android:id="@+id/detailFragment"
+        android:name="com.ua.epam.ctiptocurrencytracker.fragments.DetailFragment"
+        android:label="fragment_detail"
+        tools:layout="@layout/fragment_detail" />
+    <fragment
+        android:id="@+id/favoriteFragment2"
+        android:name="com.ua.epam.ctiptocurrencytracker.fragments.FavoriteFragment"
+        android:label="fragment_favorite"
+        tools:layout="@layout/fragment_favorite" />
+    <fragment
+        android:id="@+id/homeFragment3"
+        android:name="com.ua.epam.ctiptocurrencytracker.fragments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/marketFragment2"
+        android:name="com.ua.epam.ctiptocurrencytracker.fragments.MarketFragment"
+        android:label="fragment_market"
+        tools:layout="@layout/fragment_market" />
 </navigation>

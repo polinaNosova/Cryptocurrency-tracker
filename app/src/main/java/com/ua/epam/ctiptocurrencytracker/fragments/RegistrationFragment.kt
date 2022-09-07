@@ -70,7 +70,7 @@ class RegistrationFragment : Fragment() {
                             bundleOf(MarketFragment.userIdKey to fbUser.uid)
 
                             view.findNavController()
-                                .navigate(R.id.action_registrationFragment_to_mainFragment,
+                                .navigate(R.id.action_registrationFragment_to_homeFragment3,
                                     bundleOf(MarketFragment.userNameKey to name))
                         } else {
                             Toast.makeText(
