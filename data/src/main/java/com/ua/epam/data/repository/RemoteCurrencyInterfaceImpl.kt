@@ -1,17 +1,16 @@
 package com.ua.epam.data.repository
 
-import android.annotation.SuppressLint
 import com.ua.epam.data.mapper.CurrencyResponseMapper
 import com.ua.epam.data.mapper.LocalCurrencyMapper
 import com.ua.epam.data.state.remote.api.CryptoCurrencyService
-import com.ua.epam.data.state.remote.local.db.CurrencyDao
+import com.ua.epam.data.state.remote.local.db.CoinsDao
 import com.ua.epam.domain.common.Result
 import com.ua.epam.domain.model.FullCurrency
 import com.ua.epam.domain.model.Currency
 
 class RemoteCurrencyInterfaceImpl(
     private val service: CryptoCurrencyService,
-    private val dao: CurrencyDao
+    private val dao: CoinsDao
 ) :
     RemoteCurrencyInterface {
     override suspend fun getFinCurrencyList():Result<List<FullCurrency>> {

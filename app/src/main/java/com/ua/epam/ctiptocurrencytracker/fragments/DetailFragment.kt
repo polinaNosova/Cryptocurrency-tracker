@@ -7,7 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.core.view.get
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.github.mikephil.charting.data.*
 import com.squareup.picasso.Picasso
@@ -15,6 +18,7 @@ import com.ua.epam.ctiptocurrencytracker.R
 import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentDetailBinding
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
+import com.ua.epam.ctiptocurrencytracker.model.CurrencyUiMapper
 import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
 import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModelFactory
 
@@ -39,6 +43,13 @@ class DetailFragment : Fragment() {
         binding.lineChart.data = setUpChart(data)
         binding.lineChart.setBackgroundColor(resources.getColor(R.color.purple_200))
         binding.lineChart.animateX(3000)
+        binding.backStackButton.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_detailFragment_to_marketFragment2)
+        }
+        binding.saveStarBtn.setOnClickListener {
+
+        }
         return binding.root
     }
 

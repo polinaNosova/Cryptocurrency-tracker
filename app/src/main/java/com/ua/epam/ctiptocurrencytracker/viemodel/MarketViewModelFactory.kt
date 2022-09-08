@@ -9,10 +9,10 @@ import com.ua.epam.domain.usecase.ShowCurrencyDataUseCase
 import com.ua.epam.data.state.remote.api.RetrofitInstance
 import com.ua.epam.data.repository.CurrencyDataRepositoryImpl
 import com.ua.epam.data.repository.RemoteCurrencyInterfaceImpl
-import com.ua.epam.data.state.remote.local.db.CoinsDb
+import com.ua.epam.data.state.remote.local.db.CoinsDataBase
 
 class MarketViewModelFactory(private val application: Application) : ViewModelProvider.Factory {
-    private val dao = CoinsDb.getDatabase(application).getCurrencyDao()
+    private val dao = CoinsDataBase.getDatabase(application).getCoinsDao()
     private val remoteCurrencyRates = RemoteCurrencyInterfaceImpl(RetrofitInstance.currencyService,dao)
     private val repository = CurrencyDataRepositoryImpl(remoteCurrencyRates)
     private val currencyRateUseCase = ShowCurrencyDataUseCase(repository)

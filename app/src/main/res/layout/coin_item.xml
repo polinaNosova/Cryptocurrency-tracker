@@ -81,27 +81,27 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="@string/dollar" />
+                            android:text="@string/dollar"
+                            android:textColor="@color/white" />
 
                         <TextView
-                            android:textColor="@color/white"
                             android:id="@+id/coinPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:text="@string/_10_000" />
+                            android:text="@string/_10_000"
+                            android:textColor="@color/white" />
                     </LinearLayout>
 
                     <TextView
-                        android:textColor="@color/white"
                         android:id="@+id/priceChange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
-                        android:text="@string/percent" />
+                        android:text="@string/percent"
+                        android:textColor="@color/white" />
 
                 </LinearLayout>
 

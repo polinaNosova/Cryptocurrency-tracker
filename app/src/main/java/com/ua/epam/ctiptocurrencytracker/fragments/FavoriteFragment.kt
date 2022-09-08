@@ -9,9 +9,11 @@ import android.widget.Toast
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ua.epam.ctiptocurrencytracker.utils.SingleLiveEvent
 import com.ua.epam.ctiptocurrencytracker.R
+import com.ua.epam.ctiptocurrencytracker.adapter.FavoriteAdapter
 import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentFavoriteBinding
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
@@ -24,7 +26,10 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     private val _mapAction = MutableLiveData<List<CurrencyRateUiModel>>()
     val mapAction: LiveData<List<CurrencyRateUiModel>> get() = _mapAction
 
-    private val adapter by lazy { MarketAdapter() }
+    val args: FavoriteFragmentArgs by navArgs()
+
+    private val adapter by lazy { FavoriteAdapter() }
+
     private val _errorAction = SingleLiveEvent<String>()
     val errorAction: LiveData<String> get() = _errorAction
 
@@ -41,6 +46,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
         _binding = FragmentFavoriteBinding.inflate(inflater, container, false)
         return binding.root
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()

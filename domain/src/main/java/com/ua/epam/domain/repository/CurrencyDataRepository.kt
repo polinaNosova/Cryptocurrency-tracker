@@ -7,7 +7,7 @@ import com.ua.epam.domain.model.FullCurrency
 interface CurrencyDataRepository {
     suspend fun getCryptoCurrencyMarketList(): Result<List<FullCurrency>>
 
-    suspend fun insert(rateChangeEntity:Currency)
+    suspend fun insert(currency:Currency)
 
     suspend fun update(list: List<Currency>)
 

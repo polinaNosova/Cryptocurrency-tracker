@@ -45,7 +45,7 @@ object CurrencyUiMapper {
                     entity.lowTwentyFourHour,
                     entity.highTwentyFourHour,
                     entity.priceChangeResult,
-                    if (entity.currencyEntity.currentPrice >= 0) Color.GREEN else Color.RED
+                    if (entity.priceChangeResult >= 0) Color.GREEN else Color.RED
                 )
             )
         }

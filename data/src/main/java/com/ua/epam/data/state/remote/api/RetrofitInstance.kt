@@ -22,3 +22,20 @@ object RetrofitInstance {
         .client(client)
         .build()
     }
+object RetrofitTopInstace{
+    val currencyService: CryptoCurrencyService by lazy { retrofit.create(CryptoCurrencyService::class.java) }
+    private val httpLoggingInterceptor = HttpLoggingInterceptor().apply {
+        setLevel(HttpLoggingInterceptor.Level.BASIC)
+    }
+
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(httpLoggingInterceptor)
+        .build()
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(Constants.BASE_URL)
+        .addConverterFactory(GsonConverterFactory.create())
+        .client(client)
+        .build()
+}
+

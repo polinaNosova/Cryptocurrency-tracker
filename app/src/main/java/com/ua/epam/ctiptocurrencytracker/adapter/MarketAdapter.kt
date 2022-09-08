@@ -38,15 +38,14 @@ class MarketAdapter() :
             coinSymbol.text = model.symbol
             coinPrice.text = String.format("%.3f", model.currentPrice)
             priceChange.text = String.format("%.3f", model.priceChangeResult)
-
             Picasso.get().load(model.image).into(coinIcon)
             priceChange.setTextColor(model.color)
-
             itemView.setOnClickListener {
                 findNavController(it).navigate(
                     MarketFragmentDirections.actionMarketFragment2ToDetailFragment(model)
                 )
             }
+
         }
     }
 

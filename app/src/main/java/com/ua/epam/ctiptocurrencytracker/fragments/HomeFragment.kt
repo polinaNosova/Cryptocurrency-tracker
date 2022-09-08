@@ -22,7 +22,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val binding get() = _binding!!
 
     private val adapter by lazy { context?.let { HomeTopCurrencyAdapter(it) } }
-    private val topCoinAdapter by lazy { context?.let { TopCoinsAdapter() } }
 
     private val viewModel by viewModels<HomeViewModel> { HomeViewModelFactory(requireActivity().application) }
     private val topCoinViewModel by viewModels<TopCoinsViewModel> { TopCoinsViewModelFactory() }
@@ -35,10 +34,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         return binding.root
     }
 
-    private fun setTopCoinsAdapter() {
-        binding.rvTop24.adapter = this@HomeFragment.topCoinAdapter
-        binding.rvTop24.layoutManager = LinearLayoutManager(context)
-    }
     private fun setUpAdapter() {
         binding.rvTopCurrencyList.adapter = this@HomeFragment.adapter
     }
@@ -48,8 +43,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         setUpLiveData()
-        setTopCoinsAdapter()
-        setUpCoinsTopLiveData()
         topCoinViewModel.getTopCoins()
         viewModel.getCurrencyRates()
     }
@@ -59,26 +52,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         topCoinViewModel.getTopCoins()
         viewModel.getCurrencyRates()
     }
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setUpLiveData() {
         viewModel.apply {
             mapAction.observe(viewLifecycleOwner) {
                 adapter?.setNewCurrencyModel(it)
-                errorAction.observe(viewLifecycleOwner) {
-                    Toast.makeText(
-                        context,
-                        "An error occurred",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-            }
-        }
-    }
-
-    private fun setUpCoinsTopLiveData() {
-        topCoinViewModel.apply {
-            mapAction.observe(viewLifecycleOwner) {
-                topCoinAdapter?.setNewCurrencyModel(it)
                 errorAction.observe(viewLifecycleOwner) {
                     Toast.makeText(
                         context,

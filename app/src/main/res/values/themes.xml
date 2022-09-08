@@ -13,7 +13,9 @@
         <item name="android:statusBarColor" >?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
-
+<style name="MyBtnStyle" parent="Widget.MaterialComponents.Button">
+    <item name="colorButtonNormal">@color/purple_3</item>>
+</style>
     <style name="MyCardViewStyle" parent="Theme.AppCompat.Light">
         <item name="cardCornerRadius">5dp</item>
         <item name="cardElevation">2dp</item>

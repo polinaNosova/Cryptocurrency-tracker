@@ -11,8 +11,8 @@ class CurrencyDataRepositoryImpl(private val remoteCurrencyInterface: RemoteCurr
         return remoteCurrencyInterface.getFinCurrencyList()
     }
 
-    override suspend fun insert(rateChangeEntity: Currency) {
-       remoteCurrencyInterface.insert(rateChangeEntity)
+    override suspend fun insert(currency: Currency) {
+       remoteCurrencyInterface.insert(currency)
     }
 
     override suspend fun update(currencies: List<Currency>) {

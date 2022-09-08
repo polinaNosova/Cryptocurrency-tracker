@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment3">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/registrationFragment"
@@ -39,12 +39,22 @@
         <argument
             android:name="data"
             app:argType="com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel" />
+        <action
+            android:id="@+id/action_detailFragment_to_marketFragment2"
+            app:destination="@id/marketFragment2" />
+        <action
+            android:id="@+id/action_detailFragment_to_favoriteFragment2"
+            app:destination="@id/favoriteFragment2" />
     </fragment>
     <fragment
         android:id="@+id/favoriteFragment2"
         android:name="com.ua.epam.ctiptocurrencytracker.fragments.FavoriteFragment"
         android:label="fragment_favorite"
-        tools:layout="@layout/fragment_favorite" />
+        tools:layout="@layout/fragment_favorite" >
+        <argument
+            android:name="fav_name"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment3"
         android:name="com.ua.epam.ctiptocurrencytracker.fragments.HomeFragment"
@@ -58,5 +68,16 @@
         <action
             android:id="@+id/action_marketFragment2_to_detailFragment"
             app:destination="@id/detailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.ua.epam.ctiptocurrencytracker.fragments.SplashFragment"
+        android:label="fragment_splash"
+        tools:layout="@layout/fragment_splash" >
+        <action
+            android:id="@+id/action_splashFragment_to_authorisationFragment2"
+            app:destination="@id/authorisationFragment2"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/nav_graph"/>
     </fragment>
 </navigation>
