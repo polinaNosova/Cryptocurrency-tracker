@@ -22,7 +22,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
     private val binding get() = _binding!!
 
     private val adapter by lazy { MarketAdapter() }
-    private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory() }
+    private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory(requireActivity().application) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +37,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         setUpLiveData()
-        viewModel.getCurrencyRates(MarketViewModel.QUERY)
+        viewModel.getCurrencyRates()
     }
 
     override fun onDestroyView() {
@@ -67,7 +67,6 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
             }
         }
     }
-
 
     companion object {
         const val userNameKey = "USER_NAME"

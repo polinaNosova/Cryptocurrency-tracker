@@ -20,7 +20,6 @@ class TopCoinsAdapter() : RecyclerView.Adapter<TopCoinsAdapter.ViewHolder>() {
             coinSymbol.text = model.item.symbol
             coinPrice.text = String.format("%.3f", model.item.price_btc)
             Picasso.get().load(model.item.small).into(coinIcon)
-
         }
     }
 
@@ -32,9 +31,7 @@ class TopCoinsAdapter() : RecyclerView.Adapter<TopCoinsAdapter.ViewHolder>() {
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onBindViewHolder(holder:ViewHolder, position: Int) {
         holder.bind(startRateList[position])
-
     }
-
     override fun getItemCount(): Int = startRateList.size
 
     @SuppressLint("NotifyDataSetChanged")

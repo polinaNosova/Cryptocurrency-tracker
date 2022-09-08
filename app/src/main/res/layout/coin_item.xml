@@ -52,12 +52,14 @@
 
                     <TextView
                         android:id="@+id/coinName"
+                        android:textColor="@color/white"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
                         android:text="@string/Bitcoin" />
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/coinSymbol"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -79,11 +81,13 @@
                         android:orientation="horizontal">
 
                         <TextView
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@string/dollar" />
 
                         <TextView
+                            android:textColor="@color/white"
                             android:id="@+id/coinPrice"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -92,6 +96,7 @@
                     </LinearLayout>
 
                     <TextView
+                        android:textColor="@color/white"
                         android:id="@+id/priceChange"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

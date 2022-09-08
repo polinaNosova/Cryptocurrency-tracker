@@ -1,19 +1,22 @@
 package com.ua.epam.data.mapper
 
-import com.ua.epam.data.state.network.model.CurrencyDataResponse
-import com.ua.epam.data.state.network.model.TopCoinResponse
-import com.ua.epam.domain.model.CurrencyEntity
+import com.ua.epam.data.state.remote.model.CurrencyDataResponse
+import com.ua.epam.data.state.remote.model.TopCoinResponse
+import com.ua.epam.domain.model.FullCurrency
+import com.ua.epam.domain.model.Currency
 import com.ua.epam.domain.model.TopCoinEntity
 
 object CurrencyResponseMapper {
-    fun toCurrencyEntity(list: List<CurrencyDataResponse>): List<CurrencyEntity> =
+    fun toCurrencyEntity(list: List<CurrencyDataResponse>): List<FullCurrency> =
         list.map {
-            CurrencyEntity(
-                it.id,
-                it.symbol,
-                it.image,
-                it.name,
-                it.current_price,
+            FullCurrency(
+                Currency(
+                    it.id,
+                    it.symbol,
+                    it.image,
+                    it.name,
+                    it.current_price
+                ),
                 it.low_24h,
                 it.high_24h,
                 it.priceChange24h,
@@ -31,4 +34,4 @@ object CurrencyResponseMapper {
                 it.item.toItemEntity()
             )
         }
-    }
+}

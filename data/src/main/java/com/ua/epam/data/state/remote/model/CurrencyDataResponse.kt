@@ -1,7 +1,6 @@
-package com.ua.epam.data.state.network.model
+package com.ua.epam.data.state.remote.model
 
 import com.google.gson.annotations.SerializedName
-import java.io.Serializable
 
 data class CurrencyDataResponse(
     val ath: Double,
@@ -14,7 +13,7 @@ data class CurrencyDataResponse(
     val current_price: Double,
     val fully_diluted_valuation: Long,
     val high_24h: Double,
-    val id: String,
+    var id: String,
     val image: String,
     val last_updated: String,
     val low_24h: Double,
@@ -31,4 +30,4 @@ data class CurrencyDataResponse(
     @SerializedName("sparkline_in_7d")
     val sparklineIn7d: SparklineIn7d,
     val symbol: String
-):Serializable
+)

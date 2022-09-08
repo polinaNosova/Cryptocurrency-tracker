@@ -1,41 +1,36 @@
 package com.ua.epam.ctiptocurrencytracker.viemodel
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.rxjava.utils.SingleLiveEvent
+import androidx.lifecycle.viewModelScope
+import com.ua.epam.ctiptocurrencytracker.utils.SingleLiveEvent
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyUiMapper
 import com.ua.epam.ctiptocurrencytracker.model.TopCoinUiModel
+import com.ua.epam.domain.common.Result
 import com.ua.epam.domain.usecase.GetTopCoinsUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class TopCoinsViewModel(private val useCase: GetTopCoinsUseCase) : ViewModel() {
     private val _mapAction = MutableLiveData<List<TopCoinUiModel>>()
 
     val mapAction: LiveData<List<TopCoinUiModel>> get() = _mapAction
-    private val disposible = CompositeDisposable()
 
     private val _errorAction = SingleLiveEvent<String>()
     val errorAction: LiveData<String> get() = _errorAction
 
-    @SuppressLint("CheckResult")
     fun getTopCoins() {
-        disposible.add(
-            useCase.execute()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    _mapAction.postValue(CurrencyUiMapper.toListCoinUiModel(it))
-                }, { throwable ->
-                    _errorAction.postValue(throwable.message)
-                })
-        )
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = useCase.execute()) {
+                is Result.Success -> _mapAction.postValue(
+                    CurrencyUiMapper.toListCoinUiModel(
+                        result.data
+                    )
+                )
+                is Result.Error ->
+                    _errorAction.postValue("An error occurred")
+            }
+        }
     }
-
-    override fun onCleared() {
-        super.onCleared()
-        disposible.clear()
-    }
-
 }

@@ -23,7 +23,7 @@ class DetailFragment : Fragment() {
     private val binding get() = _binding!!
 
     private val adapter by lazy { MarketAdapter() }
-    private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory() }
+    private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory(requireActivity().application) }
 
     private val args: DetailFragmentArgs by navArgs()
     private lateinit var lineEntry: ArrayList<Entry>
@@ -48,7 +48,6 @@ class DetailFragment : Fragment() {
         binding.detailPriceTextView.text = String.format("%.3f", data.currentPrice)
         binding.detailChangeTextView.text = String.format("%.3f", data.priceChangeResult)
         binding.detailChangeTextView.setTextColor(data.color)
-        binding.tvMarkupRank.text = data.market_cap_rank.toString()
     }
 
     private fun setUpChart(data: CurrencyRateUiModel): LineData {

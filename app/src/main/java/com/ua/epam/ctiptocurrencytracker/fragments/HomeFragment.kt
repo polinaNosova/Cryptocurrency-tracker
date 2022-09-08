@@ -24,7 +24,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val adapter by lazy { context?.let { HomeTopCurrencyAdapter(it) } }
     private val topCoinAdapter by lazy { context?.let { TopCoinsAdapter() } }
 
-    private val viewModel by viewModels<HomeViewModel> { HomeViewModelFactory() }
+    private val viewModel by viewModels<HomeViewModel> { HomeViewModelFactory(requireActivity().application) }
     private val topCoinViewModel by viewModels<TopCoinsViewModel> { TopCoinsViewModelFactory() }
 
     override fun onCreateView(
@@ -36,8 +36,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun setTopCoinsAdapter() {
-        binding.rvTopCoinsList.adapter = this@HomeFragment.topCoinAdapter
-        binding.rvTopCoinsList.layoutManager = LinearLayoutManager(context)
+        binding.rvTop24.adapter = this@HomeFragment.topCoinAdapter
+        binding.rvTop24.layoutManager = LinearLayoutManager(context)
     }
     private fun setUpAdapter() {
         binding.rvTopCurrencyList.adapter = this@HomeFragment.adapter
@@ -51,9 +51,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         setTopCoinsAdapter()
         setUpCoinsTopLiveData()
         topCoinViewModel.getTopCoins()
-        viewModel.getCurrencyRates(MarketViewModel.QUERY)
+        viewModel.getCurrencyRates()
     }
 
+    override fun onResume() {
+        super.onResume()
+        topCoinViewModel.getTopCoins()
+        viewModel.getCurrencyRates()
+    }
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setUpLiveData() {
         viewModel.apply {

@@ -4,7 +4,7 @@ import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ua.epam.data.state.network.RetrofitInstance
+import com.ua.epam.data.state.remote.api.RetrofitInstance
 import com.ua.epam.data.repository.GetRemoteTopCoinInterfaceImpl
 import com.ua.epam.data.repository.GetTopCoinsListImpl
 import com.ua.epam.domain.usecase.GetTopCoinsUseCase

@@ -12,7 +12,6 @@ import com.squareup.picasso.Picasso
 import com.ua.epam.ctiptocurrencytracker.databinding.CoinItemBinding
 import com.ua.epam.ctiptocurrencytracker.fragments.MarketFragmentDirections
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
-import com.ua.epam.ctiptocurrencytracker.model.TopCoinUiModel
 
 class MarketAdapter() :
     RecyclerView.Adapter<MarketAdapter.CurrencyViewHolder>() {
@@ -45,7 +44,7 @@ class MarketAdapter() :
 
             itemView.setOnClickListener {
                 findNavController(it).navigate(
-                    MarketFragmentDirections.actionMarketFragment3ToDetailsFragment(model)
+                    MarketFragmentDirections.actionMarketFragment2ToDetailFragment(model)
                 )
             }
         }

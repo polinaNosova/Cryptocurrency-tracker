@@ -1,19 +1,23 @@
 package com.ua.epam.ctiptocurrencytracker.viemodel
 
+import android.app.Application
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.ua.epam.data.state.network.RetrofitInstance
-import com.ua.epam.data.repository.GetCurrencyDataRepositoryImpl
-import com.ua.epam.data.repository.GetRemoteCurrencyInterfaceImpl
-import com.ua.epam.domain.usecase.GetCurrencyDataUseCase
+import com.ua.epam.data.state.remote.api.RetrofitInstance
+import com.ua.epam.data.repository.CurrencyDataRepositoryImpl
+import com.ua.epam.data.repository.RemoteCurrencyInterfaceImpl
+import com.ua.epam.data.state.remote.local.db.CoinsDb
+import com.ua.epam.domain.usecase.ShowCurrencyDataUseCase
 
-class HomeViewModelFactory() :
+class HomeViewModelFactory(private val application: Application) :
     ViewModelProvider.Factory {
-    private val remoteCurrencyRates = GetRemoteCurrencyInterfaceImpl(RetrofitInstance.currencyService)
-    private val repository = GetCurrencyDataRepositoryImpl(remoteCurrencyRates)
-    private val currencyRateUseCase = GetCurrencyDataUseCase(repository)
+    private val dao = CoinsDb.getDatabase(application).getCurrencyDao()
+    private val remoteCurrencyRates =
+        RemoteCurrencyInterfaceImpl(RetrofitInstance.currencyService,dao)
+    private val repository = CurrencyDataRepositoryImpl(remoteCurrencyRates)
+    private val currencyRateUseCase = ShowCurrencyDataUseCase(repository)
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {

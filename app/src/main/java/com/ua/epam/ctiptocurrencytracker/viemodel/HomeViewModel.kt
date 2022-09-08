@@ -1,42 +1,36 @@
 package com.ua.epam.ctiptocurrencytracker.viemodel
 
-import android.annotation.SuppressLint
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.rxjava.utils.SingleLiveEvent
+import androidx.lifecycle.viewModelScope
+import com.ua.epam.ctiptocurrencytracker.utils.SingleLiveEvent
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyUiMapper
-import com.ua.epam.domain.usecase.GetCurrencyDataUseCase
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.disposables.CompositeDisposable
+import com.ua.epam.domain.common.Result
+import com.ua.epam.domain.usecase.ShowCurrencyDataUseCase
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class HomeViewModel(private val useCase: GetCurrencyDataUseCase):ViewModel() {
+class HomeViewModel(private val useCase: ShowCurrencyDataUseCase) : ViewModel() {
     private val _mapAction = MutableLiveData<List<CurrencyRateUiModel>>()
 
     val mapAction: LiveData<List<CurrencyRateUiModel>> get() = _mapAction
-    private val disposible = CompositeDisposable()
 
     private val _errorAction = SingleLiveEvent<String>()
     val errorAction: LiveData<String> get() = _errorAction
-    @SuppressLint("CheckResult")
-    fun getCurrencyRates(query: String) {
-        disposible.add(
-            useCase.execute(query)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    _mapAction.postValue(CurrencyUiMapper.toCurrencyUiModel(it))
-                }, { throwable ->
-                    _errorAction.postValue(throwable.message)
-                })
-        )
-    }
-    override fun onCleared() {
-        super.onCleared()
-        disposible.clear()
-    }
 
-    companion object {
-        const val QUERY = "USD"
+    fun getCurrencyRates() {
+        viewModelScope.launch(Dispatchers.IO) {
+            when (val result = useCase.execute()) {
+                is Result.Success -> _mapAction.postValue(
+                    CurrencyUiMapper.toCurrencyUiModel(
+                        result.data
+                    )
+                )
+                is Result.Error ->
+                    _errorAction.postValue("An error occurred")
+            }
+        }
     }
 }

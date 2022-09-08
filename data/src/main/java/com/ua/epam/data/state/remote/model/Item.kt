@@ -1,4 +1,4 @@
-package com.ua.epam.data.state.network.model
+package com.ua.epam.data.state.remote.model
 
 import com.google.gson.annotations.SerializedName
 import com.ua.epam.domain.model.ItemEntity
