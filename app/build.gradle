@@ -4,6 +4,7 @@ plugins {
     id 'com.google.gms.google-services'
     id("androidx.navigation.safeargs.kotlin")
     id 'kotlin-kapt'
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -37,7 +38,6 @@ android {
         viewBinding true
     }
 }
-
 dependencies {
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.5.1'
     def nav_version = "2.5.1"
@@ -73,7 +73,7 @@ dependencies {
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
     implementation("androidx.navigation:navigation-compose:$nav_version")
     //Fragment
-    implementation 'androidx.fragment:fragment-ktx:1.5.2'
+    implementation 'androidx.fragment:fragment-ktx:1.5.3'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1'
     //FireBase Auth
     implementation 'com.google.firebase:firebase-auth'
@@ -84,6 +84,16 @@ dependencies {
     implementation "androidx.room:room-ktx:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
-
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+    //HILT
+    implementation 'com.google.dagger:hilt-android:2.43.2'
+    kapt 'com.google.dagger:hilt-compiler:2.42'
+    //KOIN
+    def koin_version= "3.2.1"
+    implementation "io.insert-koin:koin-core:$koin_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    implementation "io.insert-koin:koin-android:$koin_version"
+    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+    implementation 'org.koin:koin-android-viewmodel:2.0.0-rc-2'
+    implementation 'com.github.SMehranB:GlowNeonButton:2.0.1'
 }

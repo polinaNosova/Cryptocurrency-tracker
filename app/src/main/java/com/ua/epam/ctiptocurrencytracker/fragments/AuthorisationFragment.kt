@@ -29,13 +29,16 @@ class AuthorisationFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.tvCreateAcc.setOnClickListener {
+        binding.tvCreate.setOnClickListener {
             view.findNavController()
                 .navigate(R.id.action_authorisationFragment2_to_registrationFragment)
         }
         binding.btnLogin.setOnClickListener {
             view.findNavController()
             setUpUserAuthorisation(view)
+        }
+        binding.ibBack.setOnClickListener {
+            super.requireActivity().onBackPressed()
         }
     }
 

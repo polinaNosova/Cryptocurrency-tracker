@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.ua.epam.ctiptocurrencytracker.R
@@ -34,9 +35,12 @@ class RegistrationFragment : Fragment() {
                     R.id.action_registrationFragment_to_authorisationFragment2
                 )
         }
-        binding.btnAccCreated.setOnClickListener {
+        binding.btnCreateAcc.setOnClickListener {
             setUpUserRegistration(view)
-
+        }
+        binding.ibBack.setOnClickListener {
+            findNavController()
+                .navigate(R.id.action_registrationFragment_to_authorisationFragment2)
         }
     }
 

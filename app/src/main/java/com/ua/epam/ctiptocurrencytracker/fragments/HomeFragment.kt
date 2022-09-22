@@ -9,10 +9,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.LinearLayoutManager
+import com.github.mikephil.charting.data.Entry
+import com.github.mikephil.charting.data.LineDataSet
 import com.ua.epam.ctiptocurrencytracker.R
-import com.ua.epam.ctiptocurrencytracker.adapter.HomeTopCurrencyAdapter
-import com.ua.epam.ctiptocurrencytracker.adapter.TopCoinsAdapter
+import com.ua.epam.ctiptocurrencytracker.adapter.HomeAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentHomeBinding
 import com.ua.epam.ctiptocurrencytracker.viemodel.*
 
@@ -21,16 +21,20 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter by lazy { context?.let { HomeTopCurrencyAdapter(it) } }
-
     private val viewModel by viewModels<HomeViewModel> { HomeViewModelFactory(requireActivity().application) }
-    private val topCoinViewModel by viewModels<TopCoinsViewModel> { TopCoinsViewModelFactory() }
+    private val adapter by lazy { context?.let { HomeAdapter(it, viewModel) } }
+    private lateinit var lineEntry: ArrayList<Entry>
+    private lateinit var dataset: LineDataSet
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        setUpAdapter()
+        setUpLiveData()
+        viewModel.getCoinsList()
         return binding.root
     }
 
@@ -39,24 +43,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setUpAdapter()
-        setUpLiveData()
-        topCoinViewModel.getTopCoins()
-        viewModel.getCurrencyRates()
-    }
-
-    override fun onResume() {
-        super.onResume()
-        topCoinViewModel.getTopCoins()
-        viewModel.getCurrencyRates()
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setUpLiveData() {
         viewModel.apply {
-            mapAction.observe(viewLifecycleOwner) {
+            liveData.observe(viewLifecycleOwner) {
                 adapter?.setNewCurrencyModel(it)
                 errorAction.observe(viewLifecycleOwner) {
                     Toast.makeText(

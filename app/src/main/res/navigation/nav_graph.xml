@@ -52,7 +52,7 @@
         android:label="fragment_favorite"
         tools:layout="@layout/fragment_favorite" >
         <argument
-            android:name="fav_name"
+            android:name="data"
             app:argType="string" />
     </fragment>
     <fragment

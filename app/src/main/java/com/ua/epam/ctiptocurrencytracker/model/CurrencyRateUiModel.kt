@@ -10,11 +10,13 @@ data class CurrencyRateUiModel(
     val image: String,
     val name: String,
     val currentPrice: Double,
-    val sparklineIn7dEntity: SparklineIn7dEntity,
     val lowTwentyFourHour: Double,
     val highTwentyFourHour: Double,
     val priceChangeResult: Double,
-    val color: Int
+    val sparkline_in_7d: ArrayList<Float>,
+    val market_cap_rank: Int,
+    val market_cap: Long,
+    val color: Int,
 ) : Serializable {
 
     override fun equals(other: Any?): Boolean {
@@ -31,20 +33,22 @@ data class CurrencyRateUiModel(
 }
 
 object CurrencyUiMapper {
-    fun toCurrencyUiModel(entities: List<FullCurrency>): List<CurrencyRateUiModel> {
+    fun toCurrencyRateUiModels(entities: List<Currency>): List<CurrencyRateUiModel> {
         val uiCurrencyModels = mutableListOf<CurrencyRateUiModel>()
         for (entity in entities) {
             uiCurrencyModels.add(
                 CurrencyRateUiModel(
-                    entity.currencyEntity.id,
-                    entity.currencyEntity.symbol,
-                    entity.currencyEntity.image,
-                    entity.currencyEntity.name,
-                    entity.currencyEntity.currentPrice,
-                    entity.sparkline_in_7d,
+                    entity.id,
+                    entity.symbol,
+                    entity.image,
+                    entity.name,
+                    entity.priceChangeResult,
                     entity.lowTwentyFourHour,
                     entity.highTwentyFourHour,
                     entity.priceChangeResult,
+                    entity.sparkline_in_7d.price,
+                    entity.market_cap_rank,
+                    entity.market_cap,
                     if (entity.priceChangeResult >= 0) Color.GREEN else Color.RED
                 )
             )
@@ -52,32 +56,42 @@ object CurrencyUiMapper {
         return uiCurrencyModels
     }
 
-    fun toItemUi(item: ItemEntity): ItemUIModel {
-        return ItemUIModel(
-            item.coin_id,
-            item.id,
-            item.large,
-            item.market_cap_rank,
-            item.name,
-            item.price_btc,
-            item.score,
-            item.slug,
-            item.small,
-            item.symbol,
-            item.thumb
+    fun currencyRateUiModelToCurrency(currencyRateUiModel: CurrencyRateUiModel): Currency {
+        return Currency(
+            currencyRateUiModel.id,
+            currencyRateUiModel.symbol,
+            currencyRateUiModel.image,
+            currencyRateUiModel.name,
+            currencyRateUiModel.currentPrice,
+            currencyRateUiModel.lowTwentyFourHour,
+            currencyRateUiModel.highTwentyFourHour,
+            currencyRateUiModel.priceChangeResult,
+            toSparkLineInSevenDays(currencyRateUiModel.sparkline_in_7d),
+            currencyRateUiModel.market_cap_rank,
+            currencyRateUiModel.market_cap
         )
     }
 
-    fun toListCoinUiModel(entities: List<TopCoinEntity>): List<TopCoinUiModel> {
-        val uiCurrencyModels = mutableListOf<TopCoinUiModel>()
-        for (entity in entities) {
-            uiCurrencyModels.add(
-                TopCoinUiModel(
-                    toItemUi(entity.item)
-                )
-            )
-        }
-        return uiCurrencyModels
+    fun toCurrencyRateUiModel(currency: Currency): CurrencyRateUiModel =
+        CurrencyRateUiModel(
+            currency.id,
+            currency.symbol,
+            currency.image,
+            currency.name,
+            currency.currentPrice,
+            currency.lowTwentyFourHour,
+            currency.highTwentyFourHour,
+            currency.priceChangeResult,
+            currency.sparkline_in_7d.price,
+            currency.market_cap_rank,
+            currency.market_cap,
+            if (currency.priceChangeResult >= 0) Color.GREEN else Color.RED
+        )
+
+    fun toSparkLineInSevenDays(sparkline_in_7d: ArrayList<Float>): SparklineInSevenDays {
+        return SparklineInSevenDays(
+            sparkline_in_7d
+        )
     }
 }
 

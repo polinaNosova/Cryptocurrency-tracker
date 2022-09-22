@@ -17,5 +17,5 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/coin_item" />
+        tools:listitem="@layout/favorite_coin_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,10 +8,8 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.ua.epam.ctiptocurrencytracker.R
-import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 
 import com.ua.epam.ctiptocurrencytracker.databinding.ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 

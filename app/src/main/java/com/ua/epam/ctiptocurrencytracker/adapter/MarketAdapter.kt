@@ -5,13 +5,16 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
-
 import com.ua.epam.ctiptocurrencytracker.databinding.CoinItemBinding
+
 import com.ua.epam.ctiptocurrencytracker.fragments.MarketFragmentDirections
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
+import com.ua.epam.ctiptocurrencytracker.viemodel.FavoriteViewModel
+import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
 
 class MarketAdapter() :
     RecyclerView.Adapter<MarketAdapter.CurrencyViewHolder>() {
@@ -26,13 +29,13 @@ class MarketAdapter() :
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
         holder.bind(startRateList[position])
-
     }
 
     override fun getItemCount(): Int = startRateList.size
 
     class CurrencyViewHolder(private val binding: CoinItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
+
         fun bind(model: CurrencyRateUiModel) = with(binding) {
             coinName.text = model.name
             coinSymbol.text = model.symbol
@@ -45,13 +48,13 @@ class MarketAdapter() :
                     MarketFragmentDirections.actionMarketFragment2ToDetailFragment(model)
                 )
             }
-
         }
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setNewCurrencyModel(model: List<CurrencyRateUiModel>) {
+    fun setNewCurrencyModel(model: List<CurrencyRateUiModel>): List<CurrencyRateUiModel> {
         startRateList = model
         notifyDataSetChanged()
+        return startRateList
     }
 }

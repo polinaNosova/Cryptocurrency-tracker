@@ -20,13 +20,13 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
 
     private var _binding: FragmentMarketBinding? = null
     private val binding get() = _binding!!
-
+    private val id = "bitcoin"
     private val adapter by lazy { MarketAdapter() }
     private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory(requireActivity().application) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         _binding = FragmentMarketBinding.inflate(inflater, container, false)
         return binding.root
@@ -37,7 +37,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
         setUpLiveData()
-        viewModel.getCurrencyRates()
+        viewModel.getCoinsList()
     }
 
     override fun onDestroyView() {
@@ -55,7 +55,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setUpLiveData() {
         viewModel.apply {
-            mapAction.observe(viewLifecycleOwner) {
+            liveData.observe(viewLifecycleOwner) {
                 adapter.setNewCurrencyModel(it)
                 errorAction.observe(viewLifecycleOwner) {
                     Toast.makeText(
@@ -72,5 +72,12 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         const val userNameKey = "USER_NAME"
         const val userEmailKey = "USER_EMAIL"
         const val userIdKey = "USER_ID"
+
+        fun newInstance(id: String) =
+            MarketFragment().apply {
+                arguments = Bundle().apply {
+                    putString(userIdKey,id)
+                }
+            }
     }
 }
