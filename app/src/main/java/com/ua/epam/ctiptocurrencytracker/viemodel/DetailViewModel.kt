@@ -18,8 +18,8 @@ class DetailViewModel(
     private val addLocalCoinUseCase: AddLocalCoinUseCase,
     private val getCoinsListUseCase: GetCoinsListUseCase,
 ) : ViewModel() {
-    private val _mapActionFullCurrency = MutableLiveData<List<CurrencyRateUiModel>>()
-    val mapActionFullCurrency: LiveData<List<CurrencyRateUiModel>> get() = _mapActionFullCurrency
+    private val _mapActionFullCurrency = MutableLiveData<CurrencyRateUiModel>()
+    val mapActionFullCurrency: LiveData<CurrencyRateUiModel> get() = _mapActionFullCurrency
 
     private val _mapActionCurrency = MutableLiveData<List<CurrencyRateUiModel>>()
     val mapActionCurrency: LiveData<List<CurrencyRateUiModel>> get() = _mapActionCurrency
@@ -29,20 +29,7 @@ class DetailViewModel(
 
     fun addCoinToLocalStorage(currency: CurrencyRateUiModel) {
         viewModelScope.launch(Dispatchers.IO) {
-            when (val result = getCoinsListUseCase.execute()) {
-                is Result.Success -> {
-                    _mapActionFullCurrency.postValue(
-                        CurrencyUiMapper.toCurrencyRateUiModels(
-                            result.data
-                        )
-                    )
-                    for (i in result.data) {
-                        addLocalCoinUseCase.execute(i)
-                    }
-                }
-                is Result.Error ->
-                    _errorAction.postValue("An error occurred")
-            }
+            addLocalCoinUseCase.execute(CurrencyUiMapper.currencyRateUiModelToCurrency(currency))
         }
     }
 }

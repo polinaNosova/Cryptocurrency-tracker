@@ -16,8 +16,6 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(
     private val getCoinsListUseCase: GetCoinsListUseCase,
-    private val getAllLocalCoins: GetAllLocalCoinsUseCase,
-    private val addLocalCoinUseCase: AddLocalCoinUseCase,
 ) : ViewModel() {
     private val _liveData = MutableLiveData<List<CurrencyRateUiModel>>()
     val liveData: LiveData<List<CurrencyRateUiModel>> get() = _liveData

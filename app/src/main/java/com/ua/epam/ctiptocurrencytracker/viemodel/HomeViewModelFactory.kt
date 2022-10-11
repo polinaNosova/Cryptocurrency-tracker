@@ -22,13 +22,10 @@ class HomeViewModelFactory(private val application: Application) :
     private val localCoinsDataSource = RoomCoinsDataSource(dao)
     private val repository = CoinsDataRepositoryImpl(remoteCoinsData, localCoinsDataSource)
     private val getCoinsListUseCase = GetCoinsListUseCase(repository)
-    private val getAllLocalCoins = GetAllLocalCoinsUseCase(repository)
-    private val addLocalCoinUseCase = AddLocalCoinUseCase(repository)
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return HomeViewModel(
-            getCoinsListUseCase, getAllLocalCoins, addLocalCoinUseCase
+            getCoinsListUseCase
         ) as T
     }
 }

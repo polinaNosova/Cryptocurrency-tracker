@@ -31,8 +31,8 @@ class FavoriteAdapter(private val favoriteViewModel: FavoriteViewModel) :
         startRateList.removeAt(position)
         notifyItemRemoved(position)
         try {
-            favoriteViewModel.deleteCoin(startRateList[position - 1])
-        } catch (e: ArrayIndexOutOfBoundsException) {
+            favoriteViewModel.deleteCoin(startRateList.get(position))
+        } catch (e: IndexOutOfBoundsException) {
             e.message
         }
     }
@@ -50,6 +50,7 @@ class FavoriteAdapter(private val favoriteViewModel: FavoriteViewModel) :
             priceChange.text = String.format("%.3f", model.priceChangeResult)
             Picasso.get().load(model.image).into(coinIcon)
             priceChange.setTextColor(model.color)
+
             ivDelete.setOnClickListener {
                 adapter.removeItem(adapterPosition)
             }

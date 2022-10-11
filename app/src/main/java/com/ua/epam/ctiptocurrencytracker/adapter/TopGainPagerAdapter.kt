@@ -1,8 +1,9 @@
-package com.ua.epam.ctiptocurrencytracker.fragments
+package com.ua.epam.ctiptocurrencytracker.adapter
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.ua.epam.ctiptocurrencytracker.fragments.TopGainFragment
 
 class TopGainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
     override fun getItemCount(): Int {
@@ -11,8 +12,10 @@ class TopGainPagerAdapter(fragment: Fragment) : FragmentStateAdapter(fragment) {
 
     override fun createFragment(position: Int): Fragment {
         val fragment = TopGainFragment()
-        val bundle = Bundle()
-        bundle.putInt("position",position)
-        fragment.
+        fragment.arguments = Bundle().apply {
+            putInt("position", position)
+            fragment.arguments
+        }
+        return fragment
     }
 }

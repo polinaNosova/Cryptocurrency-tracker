@@ -19,11 +19,8 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
     private var _binding: FragmentFavoriteBinding? = null
     private val binding get() = _binding!!
 
-    private val favoriteViewModel by viewModels<FavoriteViewModel> {
-        FavoriteViewModelFactory(
-            requireActivity().application
-        )
-    }
+    private val favoriteViewModel by viewModels<FavoriteViewModel> { FavoriteViewModelFactory(requireActivity().application) }
+
     private val adapter by lazy { FavoriteAdapter(favoriteViewModel) }
 
     override fun onCreateView(

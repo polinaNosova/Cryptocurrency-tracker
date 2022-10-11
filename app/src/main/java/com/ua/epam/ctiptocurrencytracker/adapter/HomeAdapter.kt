@@ -7,12 +7,10 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
 import com.ua.epam.ctiptocurrencytracker.adapter.HomeAdapter.ViewHolder
-import com.ua.epam.ctiptocurrencytracker.databinding.TopCoinItemBinding
 import com.ua.epam.ctiptocurrencytracker.databinding.TopCurrencyItemBinding
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModel
 
-class HomeAdapter(private val context: Context, private val homeViewModel: HomeViewModel) :
+class HomeAdapter :
     RecyclerView.Adapter<ViewHolder>() {
     private var startRateList = listOf<CurrencyRateUiModel>()
 

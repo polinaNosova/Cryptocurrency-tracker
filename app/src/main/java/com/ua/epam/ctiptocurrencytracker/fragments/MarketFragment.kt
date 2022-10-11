@@ -13,6 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.ua.epam.ctiptocurrencytracker.R
 import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentMarketBinding
+import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModel
+import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModelFactory
 import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
 import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModelFactory
 
@@ -20,7 +22,6 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
 
     private var _binding: FragmentMarketBinding? = null
     private val binding get() = _binding!!
-    private val id = "bitcoin"
     private val adapter by lazy { MarketAdapter() }
     private val viewModel by viewModels<MarketViewModel> { MarketViewModelFactory(requireActivity().application) }
 
@@ -32,7 +33,6 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         return binding.root
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpAdapter()
@@ -52,7 +52,6 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.O)
     private fun setUpLiveData() {
         viewModel.apply {
             liveData.observe(viewLifecycleOwner) {
@@ -76,7 +75,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         fun newInstance(id: String) =
             MarketFragment().apply {
                 arguments = Bundle().apply {
-                    putString(userIdKey,id)
+                    putString(userIdKey, id)
                 }
             }
     }

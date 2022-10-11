@@ -8,12 +8,12 @@ plugins {
 }
 
 android {
-    compileSdk 32
+    compileSdk 33
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.ua.epam.ctiptocurrencytracker"
-        minSdk 22
+        minSdk 26
         targetSdk 32
         versionCode 1
         versionName "1.0"
@@ -45,8 +45,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:30.4.0')
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
-    implementation 'androidx.appcompat:appcompat:1.5.0'
-    implementation 'androidx.core:core-ktx:1.8.0'
+    implementation 'androidx.appcompat:appcompat:1.5.1'
+    implementation 'androidx.core:core-ktx:1.9.0'
     implementation 'com.google.android.material:material:1.6.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.google.android.material:material:1.6.1'
@@ -88,12 +88,16 @@ dependencies {
     //HILT
     implementation 'com.google.dagger:hilt-android:2.43.2'
     kapt 'com.google.dagger:hilt-compiler:2.42'
-    //KOIN
-    def koin_version= "3.2.1"
-    implementation "io.insert-koin:koin-core:$koin_version"
-    testImplementation "io.insert-koin:koin-test:$koin_version"
-    implementation "io.insert-koin:koin-android:$koin_version"
-    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
-    implementation 'org.koin:koin-android-viewmodel:2.0.0-rc-2'
-    implementation 'com.github.SMehranB:GlowNeonButton:2.0.1'
+
+    implementation("androidx.viewpager2:viewpager2:1.0.0")
+//    //KOIN
+//    def koin_version= "3.2.1"
+//    implementation "io.insert-koin:koin-core:$koin_version"
+//    testImplementation "io.insert-koin:koin-test:$koin_version"
+//    implementation "io.insert-koin:koin-android:$koin_version"
+//    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
+//    implementation "org.koin:koin-android-viewmodel:$koin_version"
+//    implementation 'org.koin:koin-androidx-scope:1.0.2'
+//    implementation 'com.github.SMehranB:GlowNeonButton:2.0.1'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }

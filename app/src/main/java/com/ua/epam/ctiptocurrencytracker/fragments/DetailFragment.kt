@@ -15,20 +15,14 @@ import com.squareup.picasso.Picasso
 import com.ua.epam.ctiptocurrencytracker.R
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentDetailBinding
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
-import com.ua.epam.ctiptocurrencytracker.model.CurrencyUiMapper
 import com.ua.epam.ctiptocurrencytracker.viemodel.DetailViewModel
 import com.ua.epam.ctiptocurrencytracker.viemodel.DetailViewModelFactory
-import com.ua.epam.ctiptocurrencytracker.viemodel.FavoriteViewModelFactory
 
 class DetailFragment : Fragment() {
     private var _binding: FragmentDetailBinding? = null
     private val binding get() = _binding!!
 
-    private val viewModel by viewModels<DetailViewModel> {
-        DetailViewModelFactory(
-            requireActivity().application
-        )
-    }
+    private val viewModel by viewModels<DetailViewModel> { DetailViewModelFactory(requireActivity().application) }
     private val args: DetailFragmentArgs by navArgs()
 
     private lateinit var lineEntry: ArrayList<Entry>
@@ -57,7 +51,6 @@ class DetailFragment : Fragment() {
                 binding.saveStarBtn.setImageResource(R.drawable.ic_baseline_star_outline_24)
             }
             saveData(data)
-            newInstance(data.id)
         }
         return binding.root
     }
@@ -85,20 +78,5 @@ class DetailFragment : Fragment() {
 
         dataset = LineDataSet(lineEntry, "value")
         return LineData(dataset)
-    }
-
-    @RequiresApi(Build.VERSION_CODES.O)
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-    }
-
-    companion object {
-        fun newInstance(id: String): DetailFragment {
-            val bundle = Bundle()
-            bundle.putString("ID_KEY", id)
-            val fragment = DetailFragment()
-            fragment.arguments = bundle
-            return fragment
-        }
     }
 }
