@@ -4,7 +4,6 @@ plugins {
     id 'com.google.gms.google-services'
     id("androidx.navigation.safeargs.kotlin")
     id 'kotlin-kapt'
-    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -14,7 +13,7 @@ android {
     defaultConfig {
         applicationId "com.ua.epam.ctiptocurrencytracker"
         minSdk 26
-        targetSdk 32
+        targetSdk 33
         versionCode 1
         versionName "1.0"
 
@@ -85,19 +84,8 @@ dependencies {
     kapt "androidx.room:room-compiler:$roomVersion"
     androidTestImplementation "androidx.room:room-testing:$roomVersion"
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
-    //HILT
-    implementation 'com.google.dagger:hilt-android:2.43.2'
-    kapt 'com.google.dagger:hilt-compiler:2.42'
 
-    implementation("androidx.viewpager2:viewpager2:1.0.0")
-//    //KOIN
-//    def koin_version= "3.2.1"
-//    implementation "io.insert-koin:koin-core:$koin_version"
-//    testImplementation "io.insert-koin:koin-test:$koin_version"
-//    implementation "io.insert-koin:koin-android:$koin_version"
-//    implementation "io.insert-koin:koin-androidx-navigation:$koin_version"
-//    implementation "org.koin:koin-android-viewmodel:$koin_version"
-//    implementation 'org.koin:koin-androidx-scope:1.0.2'
-//    implementation 'com.github.SMehranB:GlowNeonButton:2.0.1'
+    implementation 'pl.droidsonroids.gif:android-gif-drawable:1.2.25'
+    implementation 'com.github.SMehranB:GlowNeonButton:2.0.1'
     implementation 'com.github.ybq:Android-SpinKit:1.4.0'
 }

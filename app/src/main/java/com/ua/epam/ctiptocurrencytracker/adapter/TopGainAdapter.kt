@@ -12,7 +12,7 @@ import com.ua.epam.ctiptocurrencytracker.databinding.TopCoinItemBinding
 import com.ua.epam.ctiptocurrencytracker.fragments.MarketFragmentDirections
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
 
-class TopGainAdapter() :
+class TopGainAdapter :
     RecyclerView.Adapter<TopGainAdapter.CurrencyViewHolder>() {
 
     private var startRateList = listOf<CurrencyRateUiModel>()

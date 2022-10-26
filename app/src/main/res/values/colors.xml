@@ -14,6 +14,7 @@
     <color name="purple_3">#4a148c</color>
     <color name="purple_400">#4A35BB</color>
     <color name="purple_10">#6B57DC</color>
-    <color name="purple_60">#4A3B6D</color>
+    <color name="purple_60">#451d4e</color>
     <color name="purple_0">#9C95AD</color>
+    <color name="dark_purple_back">#0f0e1e</color>
 </resources>

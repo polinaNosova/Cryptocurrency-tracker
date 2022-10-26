@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#050507">
+    android:background="@color/dark_purple_back">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -84,8 +84,10 @@
             android:background="@drawable/shape"
             android:ems="10"
             android:hint="@string/name_surname"
+            android:paddingStart="10sp"
             android:inputType="textEmailAddress"
             android:textColorHint="#554454"
+            android:textColor="@color/white"
             tools:layout_editor_absoluteX="57dp"
             tools:layout_editor_absoluteY="217dp" />
 
@@ -107,6 +109,7 @@
             android:layout_marginEnd="15dp"
             android:background="@drawable/shape"
             android:ems="10"
+            android:paddingStart="10sp"
             android:hint="@string/tim_gmail_com"
             android:inputType="textEmailAddress"
             android:textColor="@color/white"
@@ -133,6 +136,7 @@
             android:background="@drawable/shape"
             android:ems="10"
             android:hint="@string/pick_a_strong_password"
+            android:paddingStart="10sp"
             android:inputType="textPassword"
             android:textColor="@color/white"
             android:textColorHint="#554454"

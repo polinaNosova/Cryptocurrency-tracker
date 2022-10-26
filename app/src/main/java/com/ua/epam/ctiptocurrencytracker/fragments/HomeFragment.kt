@@ -1,7 +1,5 @@
 package com.ua.epam.ctiptocurrencytracker.fragments
 
-import android.content.Context
-import android.opengl.Visibility
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -15,7 +13,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ua.epam.ctiptocurrencytracker.R
 import com.ua.epam.ctiptocurrencytracker.adapter.HomeAdapter
-import com.ua.epam.ctiptocurrencytracker.adapter.TopGainPagerAdapter
+import com.ua.epam.ctiptocurrencytracker.adapter.ViewPagerAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentHomeBinding
 import com.ua.epam.ctiptocurrencytracker.viemodel.*
 
@@ -34,22 +32,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        setUpAdapter()
         setUpLiveData()
         viewModel.getCoinsList()
+        initiate()
+        setTabLayout()
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        setTabLayout()
-    }
-
     private fun setTabLayout() {
-        val adapter = TopGainPagerAdapter(this)
-        binding.pager.adapter = adapter
-
-        binding.pager.registerOnPageChangeCallback(object :
+        binding.contentViewPager.registerOnPageChangeCallback(object :
             ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
                 super.onPageSelected(position)
@@ -62,18 +53,18 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 }
             }
         })
-        TabLayoutMediator(binding.tabLayout, binding.pager) { tab, position ->
-            val title = if (position == 0) {
+    }
+
+    private fun initiate() {
+        binding.contentViewPager.adapter = ViewPagerAdapter(this)
+        TabLayoutMediator(binding.tabLayout, binding.contentViewPager) { tab, pos ->
+            var title = if (pos == 0) {
                 "Top Gainers"
             } else {
                 "Top Losers"
             }
             tab.text = title
         }.attach()
-    }
-
-    private fun setUpAdapter() {
-        binding.rvTopCurrencyList.adapter = this@HomeFragment.adapter
     }
 
     private fun setUpLiveData() {

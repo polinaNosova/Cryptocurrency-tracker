@@ -102,9 +102,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="0dp"
                         android:text="@string/percent" />
-
                 </LinearLayout>
-
             </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
