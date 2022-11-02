@@ -21,10 +21,11 @@ class MarketViewModelFactory(application: Application) : ViewModelProvider.Facto
     private val localCoinsDataSource = RoomCoinsDataSource(dao)
     private val repository = CoinsDataRepositoryImpl(remoteCoinsData, localCoinsDataSource)
     private val getCoinsListUseCase = GetCoinsListUseCase(repository)
-
+    private val addLocalCoinUseCase = AddLocalCoinUseCase(repository)
+    private val getAllLocalCoinsUseCase = GetAllLocalCoinsUseCase(repository)
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return MarketViewModel(
-            getCoinsListUseCase
+            getCoinsListUseCase, addLocalCoinUseCase, getAllLocalCoinsUseCase
         ) as T
     }
 }

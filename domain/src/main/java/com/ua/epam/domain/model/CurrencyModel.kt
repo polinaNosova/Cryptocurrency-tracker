@@ -12,4 +12,8 @@ data class Currency(
     val sparkline_in_7d: SparklineInSevenDays,
     val market_cap_rank: Int,
     val market_cap: Long,
-)
+) : Comparable<Any> {
+    override fun compareTo(other: Any): Int {
+        TODO("Not yet implemented")
+    }
+}

@@ -124,7 +124,7 @@
 
         <com.github.mikephil.charting.charts.LineChart
             android:id="@+id/lineChart"
-            android:layout_width="419dp"
+            android:layout_width="match_parent"
             android:layout_height="467dp"
             android:background="@color/purple_2"
             app:layout_constraintBottom_toBottomOf="parent"

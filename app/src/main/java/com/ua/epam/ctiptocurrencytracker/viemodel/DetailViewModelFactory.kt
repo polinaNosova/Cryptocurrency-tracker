@@ -19,10 +19,9 @@ class DetailViewModelFactory(private val application: Application) : ViewModelPr
     private val coinsDataRepositoryImpl =
         CoinsDataRepositoryImpl(remoteCoinsData, localCoinsDataSource)
     private val addLocalCoinUseCase = AddLocalCoinUseCase(coinsDataRepositoryImpl)
-    private val getCoinsListUseCase = GetCoinsListUseCase(coinsDataRepositoryImpl)
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         return DetailViewModel(
-            addLocalCoinUseCase, getCoinsListUseCase) as T
+            addLocalCoinUseCase) as T
     }
 }

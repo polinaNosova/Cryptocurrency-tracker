@@ -15,8 +15,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DetailViewModel(
-    private val addLocalCoinUseCase: AddLocalCoinUseCase,
-    private val getCoinsListUseCase: GetCoinsListUseCase,
+    private val addLocalCoinUseCase: AddLocalCoinUseCase
 ) : ViewModel() {
     private val _mapActionFullCurrency = MutableLiveData<CurrencyRateUiModel>()
     val mapActionFullCurrency: LiveData<CurrencyRateUiModel> get() = _mapActionFullCurrency

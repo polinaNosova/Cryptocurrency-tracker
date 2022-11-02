@@ -16,8 +16,8 @@
             app:popUpTo="@id/nav_graph"
             app:popUpToInclusive="true" />
         <action
-            android:id="@+id/action_registrationFragment_to_homeFragment3"
-            app:destination="@id/homeFragment3" />
+            android:id="@+id/action_registrationFragment_to_marketFragment2"
+            app:destination="@id/marketFragment2" />
     </fragment>
     <fragment
         android:id="@+id/authorisationFragment2"
@@ -28,8 +28,8 @@
             android:id="@+id/action_authorisationFragment2_to_registrationFragment"
             app:destination="@id/registrationFragment" />
         <action
-            android:id="@+id/action_authorisationFragment2_to_homeFragment3"
-            app:destination="@id/homeFragment3" />
+            android:id="@+id/action_authorisationFragment2_to_marketFragment2"
+            app:destination="@id/marketFragment2" />
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
@@ -55,11 +55,6 @@
             android:name="data"
             app:argType="string" />
     </fragment>
-    <fragment
-        android:id="@+id/homeFragment3"
-        android:name="com.ua.epam.ctiptocurrencytracker.fragments.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/marketFragment2"
         android:name="com.ua.epam.ctiptocurrencytracker.fragments.MarketFragment"

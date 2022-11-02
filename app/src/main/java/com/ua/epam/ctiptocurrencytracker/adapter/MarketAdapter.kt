@@ -5,7 +5,7 @@ import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.LiveData
 import androidx.navigation.Navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.squareup.picasso.Picasso
@@ -13,13 +13,12 @@ import com.ua.epam.ctiptocurrencytracker.databinding.CoinItemBinding
 
 import com.ua.epam.ctiptocurrencytracker.fragments.MarketFragmentDirections
 import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.FavoriteViewModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
 
 class MarketAdapter() :
     RecyclerView.Adapter<MarketAdapter.CurrencyViewHolder>() {
 
-    private var startRateList = listOf<CurrencyRateUiModel>()
+    private var _startRateList = listOf<CurrencyRateUiModel>()
+    val startList: List<CurrencyRateUiModel> get() = _startRateList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CurrencyViewHolder {
         val binding = CoinItemBinding.inflate(LayoutInflater.from(parent.context))
@@ -28,10 +27,10 @@ class MarketAdapter() :
 
     @RequiresApi(Build.VERSION_CODES.S)
     override fun onBindViewHolder(holder: CurrencyViewHolder, position: Int) {
-        holder.bind(startRateList[position])
+        holder.bind(_startRateList[position])
     }
 
-    override fun getItemCount(): Int = startRateList.size
+    override fun getItemCount(): Int = _startRateList.size
 
     class CurrencyViewHolder(private val binding: CoinItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -53,8 +52,8 @@ class MarketAdapter() :
 
     @SuppressLint("NotifyDataSetChanged")
     fun setNewCurrencyModel(model: List<CurrencyRateUiModel>): List<CurrencyRateUiModel> {
-        startRateList = model
+        _startRateList = model
         notifyDataSetChanged()
-        return startRateList
+        return _startRateList
     }
 }

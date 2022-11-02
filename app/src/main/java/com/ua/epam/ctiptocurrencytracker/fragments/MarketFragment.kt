@@ -1,20 +1,17 @@
 package com.ua.epam.ctiptocurrencytracker.fragments
 
-import android.os.Build
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ua.epam.ctiptocurrencytracker.R
 import com.ua.epam.ctiptocurrencytracker.adapter.MarketAdapter
 import com.ua.epam.ctiptocurrencytracker.databinding.FragmentMarketBinding
-import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModel
-import com.ua.epam.ctiptocurrencytracker.viemodel.HomeViewModelFactory
+import com.ua.epam.ctiptocurrencytracker.model.CurrencyRateUiModel
 import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModel
 import com.ua.epam.ctiptocurrencytracker.viemodel.MarketViewModelFactory
 
@@ -38,6 +35,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         setUpAdapter()
         setUpLiveData()
         viewModel.getCoinsList()
+        addCoinToLocalStorage(adapter.startList)
     }
 
     override fun onDestroyView() {
@@ -52,6 +50,12 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
         }
     }
 
+    private fun addCoinToLocalStorage(currencyList: List<CurrencyRateUiModel>) {
+        for (i in currencyList) {
+            viewModel.addCoinToLocalStorage(i)
+        }
+    }
+
     private fun setUpLiveData() {
         viewModel.apply {
             liveData.observe(viewLifecycleOwner) {
@@ -59,7 +63,7 @@ class MarketFragment : Fragment(R.layout.fragment_favorite) {
                 errorAction.observe(viewLifecycleOwner) {
                     Toast.makeText(
                         context,
-                        "An error occurred",
+                        "No Internet Connection",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
